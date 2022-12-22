@@ -1,4 +1,4 @@
-# BrickFEM: Automated Abaqus/Python model for simple Lego sets
+# Automated Abaqus/Python model for simple Lego sets
 
 BrickFEM automatically generates, runs, and evaluates models of small Lego sets in the finite element software Abaqus. The model can contain Lego bricks, plates, tiles, and base plates. The model first establishes the clamping of the bricks and then loads them using either a static (implicit) or dynamic (explicit) step.
 
