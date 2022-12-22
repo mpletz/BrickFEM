@@ -1,2 +1,2 @@
-call abaqus cae nogui=model_case_3.py
+call abaqus cae nogui=model_case_1.py
 pause
