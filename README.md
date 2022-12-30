@@ -19,7 +19,7 @@ The syntax in the input dictionaries and the details of the model are described 
 
 ## 1. Using BrickFEM
 
-This section first describes how BrickFEM automatically generates steps to establish the clamping connection between the bricks. It then defines the format of the input dictionaries for BrickFEM that define the brick arrangement (`assembly`), the loads of a dynamic, explicit step (`explicit_par`), and the basic Lego dimensions (`lego_geom`), see Figure 2. It further explains how to run BrickFEM using the input dictionaries.
+This section first defines the format of the input dictionaries for BrickFEM that define the brick arrangement (`assembly`), the loads of a dynamic, explicit step (`explicit_par`), and the basic Lego dimensions (`lego_geom`), see Figure 2. It then explains how to run BrickFEM using the input dictionaries.
 
 Instead of running a dynamic, explicit load for Lego sets that disassemble, the load can also be applied in a static, implicit step. The static analysis does not converge any more once the bricks disassemble. Therefore, the implicit load is only relevant for Lego sets that slightly deform and do not disassemble.
 
@@ -53,14 +53,14 @@ The bricks in the `assembly` are defined by their brick type `type` that can be 
 Figure 3: Definition of the bricks used in the model (a $2\times2$ brick and a $2\times4$ base-plate) and the positioning of them in the assembly. The green coordinates state the locations of the instances <code>loc</code> of the bricks. The load in the model is applied using a rigid cylinder with a displacement <code>u</code>  in x-direction (which can be defined in the <code>explicit_par</code> dictionary).
 </p>
 
-Figure 4 shows the shape and coordinate system origin (green x) of the four possible brick types `regular`, `plate`, `tile`, and `base-plate`. The height without stud $h$ for the plate and tile is only one third of a `regular` brick. The y-origin of the bricks lies in the bottom plane for all brick types except for the `base-plate`, where it lies at the bottom of the stud. The x- and z-coordinates of the origin of the brick lie in the center of the upper left stud. When referring to studs of a brick, this is done in terms of their indices $i_x$,$i_z$, with $i_x$ and $i_z$ starting at 1.
+Figure 4 shows the shape and coordinate system origin (green x) of the four possible brick types `regular`, `plate`, `tile`, and `base-plate`. The height without stud $h$ for the plate and tile is only one third of a `regular` brick. The y-origin of the bricks lies in the bottom plane for all brick types except for the `base-plate`, where it lies at the bottom of the stud. The x- and z-coordinates of the origin of the brick lie in the center of the upper left stud. When referring to studs of a brick, this is done in terms of their indices $i_x$, $i_z$, with $i_x$ and $i_z$ starting at 1.
 
 ![](images/brick-origins0.png)
 <p align="center">
 Figure 4: Brick options in the model with their corresponding geometry and the origin of the coordinate system (marked as a green <code>x</code>). Note that the upper left midpoint of the stud is defined as the origin. The position where bricks with type <code>'regular'</code> or <code>'plate'</code> are divided into two parts and then connected using tie-constraints is also shown.
 </p>
 
-In the sub-dictionary `bc` of `assembly`, the boundary conditions are defined. It needs the part id and the name of the set that should be fixed. Possible sets are `'BOTTOM'`, `'TOP-FACES'`, and `'STUD-ij'` for the bottom face, all top faces, or top face of the stud with index $i$=$i_x$ and $j$=$i_z$, respectively.
+In the sub-dictionary `bc` of `assembly`, the boundary conditions are defined. It needs the part id and the name of the set that should be fixed. Possible sets are `'BOTTOM'`, `'TOP-FACES'`, and `'STUD-ij'` for the bottom face, all top faces, or top face of the stud with index $i=i_x$ and $j=i_z$, respectively.
 
 Loads that should be applied on sets via reference points work like the boundary conditions: The part number and the `set_name` must be stated. Then, a reference point is automatically created in the center of that set, and all nodes in the set are rigidly coupled to this reference point. The displacements and rotation angles of the RP can be stated using the parameters `ux`, `uy`, `uz`, `rotx`, `roty`, or `rotz`. If one or more of those displacements is not stated, this displacement is free in the model.
 
@@ -91,7 +91,7 @@ The `explicit_par` dictionary contains the following parameters:
 
 The sub-dictionary `loads_rigid` defines rigid parts for loading that can be either spheres or cylinders. They both need a location of their center and a radius, stated as `loc` and `radius` in the dictionary. For the cylinder, also the `direction` of the cylinder axis and its length `len` need to be given. Note that the reference point of the cylinder lies at half of its length for the cylinder and at the center of the sphere and the location states where this center should be located.
 
-The displacement of the rigid part is stated in `u` as a list ($u_x$, $u_y$, $u_z$). The rotations of the rigid part are always fixed. Alternatively, the rigid part can have an initial velocity and the freely move in the load step. This can be realized by stating `m` and `v0` in `loads_rigid` to state the mass and the initial velocity of the rigid part, respectively. The moments of inertia $I_\mathrm{jj}$ are calculated from the mass $m$ and radius $r$ as $I_\mathrm{xx}=I_\mathrm{yy}=I_\mathrm{zz}=2/5\;m\;r^2$ for the sphere. For the cylinder with a length $l$, the moments of inertia are set to $I_\mathrm{xx}=1/2\;m\;r^2$ and $I_\mathrm{yy}=I_\mathrm{zz}=1/12\;l\;m^2$ with the x-axis as the cylinder axis.
+The displacement of the rigid part is stated in `u` as a list ( $u_x$, $u_y$, $u_z$). The rotations of the rigid part are always fixed. Alternatively, the rigid part can have an initial velocity and the freely move in the load step. This can be realized by stating `m` and `v0` in `loads_rigid` to state the mass and the initial velocity of the rigid part, respectively. The moments of inertia $I_\mathrm{jj}$ are calculated from the mass $m$ and radius $r$ as $I_\mathrm{xx}=I_\mathrm{yy}=I_\mathrm{zz}=2/5 m r^2$ for the sphere. For the cylinder with a length $l$, the moments of inertia are set to $I_\mathrm{xx}=1/2 m r^2$ and $I_\mathrm{yy}=I_\mathrm{zz}=1/12 l m^2$ with the x-axis as the cylinder axis.
 
 For computing multiple explicit load cases with varying rigid body loads, the initial clamping steps do not need to be run every time. Once the result files of the clamping steps are available, the parameter `is_new` (default value of 1) can be set to zero:
 
@@ -121,7 +121,7 @@ Figure 5, where a $2 \times 2$ and a $1\times2$ brick are shown, defines the cor
 
 ![](images/brick-geom0.png)
 <p align="center">
-Figure 5: General dimensions parameters of Lego bricks in BrickFEM, shown for a 2$\times$2 brick and a 2$\times$1 regular brick. Note that these bricks would not have the ribs shown as blue faces. They are, however, drawn to indicate their height and thickness.</p>
+Figure 5: General dimensions parameters of Lego bricks in BrickFEM, shown for a $2\times2$ brick and a $2\times1$ regular brick. Note that these bricks would not have the ribs shown as blue faces. They are, however, drawn to indicate their height and thickness.</p>
 
 For $n_x \times n_z$ `regular` bricks with either $n_x \geq 4$ or $n_z \geq 4$, there can be inner ribs that connect the lower cylinders or tubes. Those ribs are situated only at every second cylinder or tube. Only regular bricks with an even number of studs feature those ribs perpendicular to the direction of this even number. For $n_x=1$ or $n_z = 1$, the ribs have a thickness and inner height stated as `t_rib` and `h_rib` in the `inside cyl` dictionary, respectively. If $min(n_x,n_z) \geq 2$, the rib thickness and height are stated in the same way in the `inside big` dictionary. See Figure 5 for the rib geometry. To not use those side walls, just set `t_rib` to 0.
 
