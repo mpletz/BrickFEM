@@ -36,7 +36,7 @@ The assembly of a Lego set in BrickFEM is defined in the `assembly` dictionary. 
 assembly = {
  'name':'case1-pull-1x1',
  'bricks':{1:{'type':'base-plate', 'nx':1, 'nz':1},
-           2:{'type':'brick', 'nx':1, 'nz':1}},
+           2:{'type':'regular', 'nx':1, 'nz':1}},
  'parts':{1:{'brick_id':1,'loc':(0,0,0),'c':'Yellow'},
           2:{'brick_id':2,'loc':(0,0,0)},'c':'Red'},
  'bc':{1:{'part_id':1, 'set_name':'BOTTOM'}},
@@ -206,7 +206,7 @@ In case 1, a $1\times1$ regular brick is simply pulled off a baseplate that is f
 assembly_case_1 = {
  'name':'case-1-pull-1x1',
  'bricks':{1:{'type':'base-plate', 'nx':1, 'nz':1},
-           2:{'type':'brick', 'nx':1, 'nz':1}},
+           2:{'type':'regular', 'nx':1, 'nz':1}},
  'parts':{1:{'brick_id':1, 'loc':(0,0,0)},
           2:{'brick_id':2, 'loc':(0,0,0)}},
  'bc':{1:{'part_id':1, 'set_name':'BOTTOM'}},
@@ -231,7 +231,7 @@ Case 2 features a $2\times4$ regular brick on a $2\times2$ baseplate (fixed at b
 assembly_case_2 = {
  'name':'case-2-bend2x4',
  'bricks':{1:{'type':'base-plate', 'nx':2, 'nz':2},
-           2:{'type':'brick', 'nx':4, 'nz':2}},
+           2:{'type':'regular', 'nx':4, 'nz':2}},
  'parts':{1:{'brick_id':1, 'loc':(0,0,0)},
           2:{'brick_id':2, 'loc':(0,0,0)}},
  'bc':{1:{'part_id':1, 'set_name':'BOTTOM'}},
@@ -253,7 +253,7 @@ Case 3 models a tower of $2\times2$ regular bricks on a $2\times2$ baseplate (wh
 assembly_case_3 = {
  'name':'case-3-tower6_2x2',
  'bricks':{1:{'type':'base-plate', 'nx':2, 'nz':2},
-           2:{'type':'brick', 'nx':2, 'nz':2}},
+           2:{'type':'regular', 'nx':2, 'nz':2}},
  'parts':{1:{'brick_id':1, 'loc':(0,0,0)},
           2:{'brick_id':2, 'loc':(0,0,0)},
           3:{'brick_id':2, 'loc':(0,9.6,0)},
