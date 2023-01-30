@@ -1,4 +1,4 @@
-# Automated Abaqus/Python model for simple Lego sets
+# BrickFEM: Automated Abaqus/Python model for simple Lego sets
 
 BrickFEM automatically generates, runs, and evaluates models of small Lego sets in the finite element software Abaqus. The model can contain Lego bricks, plates, tiles, and base plates. The model first establishes the clamping of the bricks and then loads them using either a static (implicit) or dynamic (explicit) step.
 
@@ -87,7 +87,7 @@ The `explicit_par` dictionary contains the following parameters:
 * `t_step`: The time of the explicit step (float) or the times of the explicit steps (list) that are independently computed.
 * `is_acc`: If the load should be applied with constant acceleration (1) or constant velocity (0) to reach the total displacement at the end of the step.
 * `mass_scale_t`: If 0, no mass scaling is used. If unequal 0, this is the target time step used for mass scaling.
-* `load_str`: String that is added to the model name. If the same Lego set is loaded by varying types, positions, or velocities of a rigid body, this can be stated in the model name.
+* `load_str`: String that is added to the model name. If the same Lego set is loaded in varying ways defined in separate `explicit\_par` dictionaries, it can be convenient to identify these load cases in the model name.
 
 The sub-dictionary `loads_rigid` defines rigid parts for loading that can be either spheres or cylinders. They both need a location of their center and a radius, stated as `loc` and `radius` in the dictionary. For the cylinder, also the `direction` of the cylinder axis and its length `len` need to be given. Note that the reference point of the cylinder lies at half of its length for the cylinder and at the center of the sphere and the location states where this center should be located.
 
