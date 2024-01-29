@@ -615,6 +615,7 @@ def create_video(job_name):
         session.printToFile(fileName='img-video/anim-' + str(i_frame).zfill(3),
                             format=PNG, canvasObjects=(vp1,))
     
+    raise ValueError('')
     # merge the images into an animated gif: use a delay of 50 ms (-delay 5) 
     # & repeat (-loop 0)
     os.system('magick convert -dispose Background -delay 5 img-video/anim-*.png -loop 0 ' +
