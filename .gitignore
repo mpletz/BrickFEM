@@ -11,6 +11,7 @@
 .vscode
 images/old_stuff/*
 images/make_figures/*
+anim-*.png
 
 .DS_Store
 **/.DS_Store
