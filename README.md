@@ -302,8 +302,8 @@ Due to the limitations of the FEM theory, the Abaqus software, and the fact that
 ## 6. Bigger models
 
 <p float="left" align="center">
-  <img src="images/pumpkin-final.gif" width="400" />
-  <img src="images/snowman.gif" width="400" /> 
+  <img src="images/pumpkin-final.gif" width="300" />
+  <img src="images/snowman.gif" width="500" /> 
 </p>
 <p align="center">
 Figure 8: Resulting deformations in the three examples generated with BrickFEM.
