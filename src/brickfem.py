@@ -584,6 +584,12 @@ def create_video(job_name):
                  projection=PERSPECTIVE, cameraPosition=(102.76, -116.14, 52.059), viewOffsetY=0,
                  cameraUpVector=(-0.34279, 0.52332, 0.78015), cameraTarget=(23.063, -2.4859, 3.6211),
                  viewOffsetX=0, autoFit=ON)
+    
+    # for the pumpkin
+    session.View(name='User-1', nearPlane=221.05, farPlane=323.41, width=203.45, 
+                height=99.922, projection=PERSPECTIVE, cameraPosition=(104.03, 92.217, 
+                251.82), cameraUpVector=(-0.13447, 0.85535, -0.5003), cameraTarget=(31.195, 
+                36.737, -5.3113), viewOffsetX=0, viewOffsetY=0, autoFit=ON)
     vp1.view.setValues(session.views['User-1'])
 
     # just use the iso view and fit model into the window
@@ -593,7 +599,9 @@ def create_video(job_name):
     vp1.viewportAnnotationOptions.setValues(triad=OFF, state=OFF, legendBackgroundStyle=MATCH,
                                             annotations=OFF, compass=OFF, title=OFF, legend=OFF)
     #
-    session.printOptions.setValues(vpDecorations=OFF, reduceColors=False)
+    session.graphicsOptions.setValues(backgroundStyle=SOLID, backgroundColor='#FFFFFF')
+
+    session.printOptions.setValues(vpDecorations=OFF, vpBackground=ON, reduceColors=False)
     vp1.odbDisplay.commonOptions.setValues(visibleEdges=FREE)
     # create folder for the images
     make_dir('img-video', if_clear=1, if_change=0)
