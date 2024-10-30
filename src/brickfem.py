@@ -9,7 +9,7 @@ from abaqus import *
 from abaqusConstants import *
 from caeModules import *
 import numpy as np
-import os, random, json, copy, shutil
+import os, random, json, copy, shutil, subprocess
 
 TOL = 1e-3
 DIR0 = os.path.abspath('')
@@ -601,7 +601,7 @@ def create_video(job_name):
     #
     session.graphicsOptions.setValues(backgroundStyle=SOLID, backgroundColor='#FFFFFF')
 
-    session.printOptions.setValues(vpDecorations=OFF, vpBackground=ON, reduceColors=False)
+    session.printOptions.setValues(vpDecorations=OFF, vpBackground=ON, reduceColors=True)
     vp1.odbDisplay.commonOptions.setValues(visibleEdges=FREE)
     # create folder for the images
     make_dir('img-video', if_clear=1, if_change=0)
@@ -623,7 +623,17 @@ def create_video(job_name):
         session.printToFile(fileName='img-video/anim-' + str(i_frame).zfill(3),
                             format=PNG, canvasObjects=(vp1,))
     
-    raise ValueError('')
+    # new version with ffmpeg (works only ok for reducedColors=True)
+    try:
+        os.remove('anim-'+job_name+'.gif')
+    except:
+        None
+    os.system('ffmpeg -framerate 10 -i img-video/anim-%03d.png anim-'+job_name+'.gif')
+
+    make_dir('img-video', if_clear=1, if_change=0)
+    vp1.maximize()
+    
+    return
     # merge the images into an animated gif: use a delay of 50 ms (-delay 5) 
     # & repeat (-loop 0)
     os.system('magick convert -dispose Background -delay 5 img-video/anim-*.png -loop 0 ' +
