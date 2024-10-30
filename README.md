@@ -299,12 +299,12 @@ Due to the limitations of the FEM theory, the Abaqus software, and the fact that
 * A small contact overclosure of many nodes is reported at the beginning of the explicit step. However, Abaqus seems to be able to correct this.
 * Abaqus/Python scripts can be called either interactively (`abaqus cae script=script.py` in the command line, or in an open Abaqus CAE window) or in the background (`abaqus cae nogui=script.py` in the command line). BrickFEM uses the command `waitForCompletion` to wait with the evaluation of a model until the solver is finished. This usually crashes when Abaqus is called interactively, which is a bug of Abaqus. Therefore, when started interactively, BrickFEM will open a window when a job is submitted, asking the user to wait until the job has finished and then press *ok*.
 
-## 6. Bigger models
+## 6. Larger models
 
 <p float="left" align="center">
-  <img src="images/pumpkin-final.gif" width="300" />
-  <img src="images/snowman.gif" width="500" /> 
+  <img src="images/pumpkin.gif" width="400" />
+  <img src="images/snowman.gif" width="400" /> 
 </p>
 <p align="center">
-Figure 8: Resulting deformations in the three examples generated with BrickFEM.
+Figure 9: Results of larger (seasonal) BrickFEM models.
 </p>
