@@ -302,8 +302,8 @@ Due to the limitations of the FEM theory, the Abaqus software, and the fact that
 ## 6. Larger models
 
 <p float="left" align="center">
-  <img src="images/pumpkin.gif" width="400" />
-  <img src="images/snowman.gif" width="400" /> 
+  <img src="images/anim-pumpkin-40mps-40mm-001_0ms.gif" width="400" />
+  <img src="images/anim-snowman-20mps-300f-000_5ms.gif" width="400" /> 
 </p>
 <p align="center">
 Figure 9: Results of larger (seasonal) BrickFEM models.

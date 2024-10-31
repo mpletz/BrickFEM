@@ -88,4 +88,4 @@ explicit_par_snowman = {
                                  }}
               }
 
-make_model(assembly_snowman, explicit_par_snowman, is_new=1,n_frames_expl=100)
+make_model(assembly_snowman, explicit_par_snowman, is_new=0, n_frames_expl=100)
