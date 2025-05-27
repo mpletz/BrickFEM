@@ -113,3 +113,7 @@ images/pumpkin.jpg
 /src/snowman-expl-mesh080mm
 images/impact-tester-wpk.png
 /src/snowman-2024-expl-mesh080mm
+src/temp_wall.py
+src/dev_evaluate_diagram.ipynb
+/src/wall-m3-expl-mesh075mm
+/src/wall-m0-expl-mesh075mm

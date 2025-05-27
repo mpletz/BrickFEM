@@ -977,7 +977,7 @@ def make_loads(model, assembly, explicit_par, mesh_size, t_step, is_expl=1, if_p
             else:
                 step_ho = 'free'
         #
-        ho_var = ('U1', 'U2', 'U3', 'UR1', 'UR2', 'UR3', 'RF1', 'RF2', 'RF3', 'RM1', 'RM2', 'RM3')
+        ho_var = ('U1', 'U2', 'U3', 'UR1', 'UR2', 'UR3', 'RF1', 'RF2', 'RF3', 'RM1', 'RM2', 'RM3', 'A1', 'A2', 'A3')
         if is_expl and if_prestep == 0:
             model.HistoryOutputRequest(name='ho-RP-' + str(i), createStepName=step_ho, numIntervals=500,
                                        variables=ho_var,
