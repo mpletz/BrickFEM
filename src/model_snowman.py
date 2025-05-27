@@ -11,7 +11,7 @@ def_x = 8
 def_z = def_x
 
 assembly_snowman = {
-                'name':'snowman',
+                'name':'snowman-2024',
                 'bricks':{
                         1:{'type':'regular', 'nx':4, 'nz':2},
                         2:{'type':'regular', 'nx':6, 'nz':2},
@@ -80,12 +80,12 @@ assembly_snowman = {
 radius = 8
 
 explicit_par_snowman = {
-              'mass_scale_t': 14e-8, 't_step': 0.0005, 'is_acc': 0,
-              'load_str': '-20mps-300f',
+              'mass_scale_t': 14e-8, 't_step': 0.001, 'is_acc': 0,
+              'load_str': '-40mps-200f',
               'loads_rigid': {1:{'shape':'sphere', 'radius':radius, 
                                  'loc':(-def_x-4-radius,def_y*(7+(2./3.)), 4),
                                  'v0':(40000,0,0), 'm':1200e-6
                                  }}
               }
 
-make_model(assembly_snowman, explicit_par_snowman, is_new=0, n_frames_expl=100)
+make_model(assembly_snowman, explicit_par_snowman, is_new=0, n_frames_expl=150)

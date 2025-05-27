@@ -1,1 +1,0 @@
-{"explicit_par": {"is_acc": 0, "loads_rigid": {"1": {"loc": [-4, 23.7, 0], "len": 10.0, "shape": "cyl", "u": [0, -18, 0], "radius": 6.0, "dir": [0, 0, 1]}}, "mass_scale_t": 0, "load_str": "", "t_step": 0.012}, "t_step": 0.012}

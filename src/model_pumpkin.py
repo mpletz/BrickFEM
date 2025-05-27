@@ -63,9 +63,9 @@ assembly_pumpkin = {
 
 radius = 8
 
-explicit_par_snowman = {
-              'mass_scale_t': 14e-8, 't_step': 0.001, 'is_acc': 0, # 0.001
-              'load_str': '-40mps-40mm',
+explicit_par_pumpkin = {
+              'mass_scale_t': 14e-8, 't_step': 0.002, 'is_acc': 0, # 0.001
+              'load_str': '-20mps-40mm',
               'loads_rigid': {1:{'shape':'sphere', 'radius':radius, 
                                  'loc':(3.5*dx, dy*3.5, -dz/2-radius),
                                  'u':(0,0,40) # 40
@@ -73,13 +73,13 @@ explicit_par_snowman = {
               }
 
 # hit from the left
-#explicit_par_snowman['load_str'] += '-side'
-#explicit_par_snowman['loads_rigid'][1] = {'shape':'sphere', 'radius':radius, 
+#explicit_par_pumpkin['load_str'] += '-side'
+#explicit_par_pumpkin['loads_rigid'][1] = {'shape':'sphere', 'radius':radius, 
 #                                          'loc':(-2.5*dx-radius, dy*3.5, dz/2.),
 #                                          'u':(40,0,0)}
 
-make_model(assembly_pumpkin, explicit_par_snowman, is_new=1, n_frames_expl=100)
+#make_model(assembly_pumpkin, explicit_par_pumpkin, is_new=0, n_frames_expl=100)
 
 # only video evaluation, e.g. for changed view
-#make_dir('pumpkin-expl-mesh080mm', if_clear=0, if_change=1)
-#create_video('pumpkin-40mps-15mm-001_0ms')
+make_dir('pumpkin-expl-mesh080mm', if_clear=0, if_change=1)
+create_video('pumpkin-40mps-40mm-001_0ms')

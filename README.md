@@ -21,15 +21,14 @@ The syntax in the input dictionaries and the details of the model are described 
 
 This section first defines the format of the input dictionaries for BrickFEM that define the brick arrangement (`assembly`), the loads of a dynamic, explicit step (`explicit_par`), and the basic Lego dimensions (`lego_geom`), see Figure 2. It then explains how to run BrickFEM using the input dictionaries.
 
-Instead of running a dynamic, explicit load for Lego sets that disassemble, the load can also be applied in a static, implicit step. The static analysis does not converge any more once the bricks disassemble. Therefore, the implicit load is only relevant for Lego sets that slightly deform and do not disassemble.
+Instead of running a dynamic, explicit load for Lego sets that disassemble, the load can also be applied in a static, implicit step. The static analysis does not converge any more once the bricks disassemble. Therefore, the implicit load is only relevant for Lego sets that slightly deform and do not disassemble. 
 
 ![](images/lego-functions0.png)
 <p align="center">
-Figure 2: Structure of the model function <code>make_model</code> that creates, runs, and evaluates the Lego model from the input dictionaries <code>assembly</code>, <code>explicit_par</code>, and <code>lego_geom</code>. Note that <code>lego_geom</code> is optional. By default, it contains  basic Lego dimensions and the Lego material properties.
+Figure 2: Structure of the model function <code>make_model</code> that creates, runs, and evaluates the Lego model from the input dictionaries <code>assembly</code>, <code>explicit_par</code>, and <code>lego_geom</code>. Note that <code>lego_geom</code> is optional. By default, it contains  basic Lego dimensions and the Lego material properties. 
 </p>
 
 ### 1.1 Definition of brick assembly and loads
-
 The assembly of a Lego set in BrickFEM is defined in the dictionary `assembly`. The subdictionary `bricks` lists the bricks used in the model. The subdictionary `parts` places these bricks, referenced by their `brick_id`, at the locations `loc`, see Figure 3. Optionally, the color of each part for the output video can be defined as `c`, specifying either one of the solid Lego brick colors from [Bricklink](https://www.bricklink.com/catalogColors.asp) or a 6-digit hex code as a string. Note that any brick defined in the `bricks` subdictionary can be used multiple times in the model by referring to it multiple times in the `parts` subdictionary. The assembly dictionary also defines the boundary conditions `bc`, the loads on the brick sets `loads_rp`, the mesh size `mesh_size`, and the friction coefficient `mu`:
 
 ```python

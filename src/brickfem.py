@@ -422,7 +422,7 @@ def make_dir(dir_name, if_change=0, if_clear=0):
     return dir_abs
 
 
-def color_bricks(vp1,instances):
+def color_bricks(vp1,instances,rigid_color='ffffff'):
     """Assign colors to the displayed instances either from the defined colors in the `assembly` dictionary or as random colors.
 
     Args:
@@ -464,7 +464,7 @@ def color_bricks(vp1,instances):
     with open('_dict-assembly.json', 'r') as f:
         assembly = json.load(f)['assembly']
     
-    def get_color(part,cm_set,c_default='ffffff'):
+    def get_color(part,cm_set,c_default='ffffff'):  # 7ed986
         """Get the hex code of color from col_str: can be a string with the color name or the hex code itself
 
         Args:
@@ -495,7 +495,8 @@ def color_bricks(vp1,instances):
         # if 'c' keys in the parts: use those colors for video
         cm_set = set(cm_lego.keys())
         print(assembly['parts'].items())
-        col_list = [get_color(assembly['parts'][str(i_part+1)],cm_set) for i_part in range(len(assembly['parts']))]+['1e1e1e']*4
+        # add color string for the rigid part(s) 'd5ef5b' for light green
+        col_list = [get_color(assembly['parts'][str(i_part+1)],cm_set) for i_part in range(len(assembly['parts']))]+[rigid_color]*4
 
     else:
         # if no colors are defined in parts of assembly dictionary:
@@ -593,8 +594,8 @@ def create_video(job_name):
     vp1.view.setValues(session.views['User-1'])
 
     # just use the iso view and fit model into the window
-    vp1.view.setValues(session.views['Iso'])
-    vp1.view.fitView()
+    #vp1.view.setValues(session.views['Iso'])
+    #vp1.view.fitView()
 
     vp1.viewportAnnotationOptions.setValues(triad=OFF, state=OFF, legendBackgroundStyle=MATCH,
                                             annotations=OFF, compass=OFF, title=OFF, legend=OFF)
@@ -628,9 +629,9 @@ def create_video(job_name):
         os.remove('anim-'+job_name+'.gif')
     except:
         None
-    os.system('ffmpeg -framerate 10 -i img-video/anim-%03d.png anim-'+job_name+'.gif')
+    os.system('ffmpeg -framerate 30 -i img-video/anim-%03d.png anim-'+job_name+'.gif')
 
-    make_dir('img-video', if_clear=1, if_change=0)
+    make_dir('img-video', if_clear=1, if_change=0)  
     vp1.maximize()
     
     return
