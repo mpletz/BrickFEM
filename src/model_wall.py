@@ -284,7 +284,7 @@ assembly = {'name':'%s',
 
 e_par_wall = {'t_step': %f, 'mass_scale_t': 1.2e-7, 'is_acc': 0,
                 'load_str': '%s',
-                'loads_rigid': {1: {'shape': 'sphere', 'radius': 7.1, 'loc': (%f*8, 9.6*%f, 4+7.1), 'm':%f,
+                'loads_rigid': {1: {'shape': 'sphere', 'radius': 5, 'loc': (%f*8, 9.6*%f, 4+5), 'm':%f,
                                     'v0': (0, 0, -%f)}}}
 
 make_model(assembly, e_par_wall, is_new=%i)
@@ -298,7 +298,7 @@ make_model(assembly, e_par_wall, is_new=%i)
 
 e_par_wall = {'t_step': %f, 'mass_scale_t': 1.2e-7, 'is_acc': 0,
                 'load_str': '',
-                'loads_rigid': {1: {'shape': 'sphere', 'radius': 5., 'loc': (%f*8, 9.6*%f, 4+5),
+                'loads_rigid': {1: {'shape': 'sphere', 'radius': 5, 'loc': (%f*8, 9.6*%f, 4+5),
                                     'u': (0, 0, %f)}}}
 
 make_model(assembly, e_par_wall, is_new=%i)
@@ -424,7 +424,7 @@ def make_energy_plot(res_dir,wall_bricks,m=0):
     #plt.show()
     return e_wk, e_kin, e_fric
 
-def make_wall_model(model_name,con_arr=(),if_run=1,m=0,is_new=1,t_step=0.0012,v=20,mesh_size=0.75):
+def make_wall_model(model_name,con_arr=(),if_run=1,m=0,is_new=1,t_step=0.0006,v=20,mesh_size=0.75):
     """Run the BrickFEM model for a Lego wall. 
 
     Args:
@@ -471,13 +471,20 @@ if __name__ == "__main__":
                                   [0, 1, 1, 1], [1, 1, 0, 1],[0, 1, 1, 1]])
     wall_alternate1x4 = make_full_from_sym(wall_alternate1x4)
     
+    wall_opt = np.array([[1, 0, 1, 0], [1, 0, 0, 1], [1, 1, 0, 1], [0, 0, 1, 0],
+                         [1, 1, 0, 1], [0, 0, 1, 0],[0, 0, 0, 0]])
+    wall_opt = make_full_from_sym(wall_opt)
+
     wall_singles = np.zeros((7,7))
     wall_full = np.ones((7,7))
     
-    #make_run_wall('test-rerun','plates-full', con_arr=wall_alternate1x4,if_run=1,is_new=1)
+    make_wall_model('wall-singles', wall_singles,if_run=1,is_new=1)
+    make_wall_model('wall-full', wall_full,if_run=1,is_new=1)
+    make_wall_model('wall-altern1x4', wall_alternate1x4,if_run=1,is_new=1)
+    
+    #make_wall_model('wall-optimized', wall_opt,if_run=1,is_new=1)
 
     # simple setup for mesh study (3x4 wall)
-    make_wall_model('wall-m0', con_arr=np.array(((1,1),(1,0),(1,1),(0,1))),  
-                    if_run=1,mesh_size=0.75,m=0,t_step=0.0004)
+    #make_wall_model('wall-m0', con_arr=np.array(((1,1),(1,0),(1,1),(0,1))),  
+    #                if_run=1,mesh_size=0.75,m=0,t_step=0.0004)
     
-

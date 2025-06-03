@@ -117,3 +117,6 @@ src/temp_wall.py
 src/dev_evaluate_diagram.ipynb
 /src/wall-m3-expl-mesh075mm
 /src/wall-m0-expl-mesh075mm
+/src/wall-singles-expl-mesh075mm
+/src/wall-full-expl-mesh075mm
+/src/wall-altern1x4-expl-mesh075mm
